@@ -1,0 +1,99 @@
+<div style="display: flex; padding-top: 25px;">
+    <div style="width: 30%;  height: 100%; border: 3px solid #151313cc;margin-right: 10px; margin-left: 20px;">
+        <mat-form-field class="example-form-field" style="width: 89%; padding: 10px 20px;">
+            <mat-label>Type city name</mat-label>
+            <input matInput type="text" [(ngModel)]="cityName">
+
+            <button matSuffix mat-icon-button aria-label="Clear" (click)="addCity()">
+                <span class="material-icons">add_circle_outline</span>
+            </button>
+
+        </mat-form-field>
+
+        <hr>
+        <div *ngIf="errorMessage">{{ errorMessage }}</div>
+        <div>
+            <span style="padding-left: 20px;
+            font-size: 13px;
+            color: brown;">Recent location</span>
+
+            <mat-list>
+                <mat-list-item *ngFor="let location of recentLocations">
+
+                    <span mat-line>{{ location.name }} - {{location.temperature | number:'1.0-0'}}°C&nbsp;
+                        {{location.weatherStatus}}
+                    </span>
+
+                    <button mat-icon-button (click)="refreshCity(location)">
+                        <span class="material-icons">autorenew</span>
+                    </button>
+                    <button mat-icon-button (click)="removeCity(location.name)">
+                        <span class="material-icons">clear</span>
+                    </button>
+                </mat-list-item>
+            </mat-list>
+
+            <div style="display: flex; justify-content: end; padding: 10px;" *ngIf="recentLocations.length"
+                (click)="clearCity()">
+                <a mat-raised-button target="_blank">Clear</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right side - start-->
+    <div class="weather-container">
+        <div *ngIf="responseData">
+
+
+            <div class="header">
+                <span><strong>{{ responseData?.name }}</strong></span>
+                <!-- <span><span class="material-icons">autorenew</span></span> -->
+            </div>
+            <br><br>
+            <div class="content">
+                <div class="icon" *ngIf="responseData?.clouds">
+                    <img src="../../assets/images/weather.svg" alt="Weather Icon">
+                </div>
+                <div class="details">
+                    <span *ngIf="responseData?.clouds">{{ responseData?.clouds?.all }}°C</span> <br> <br>
+
+                    <div *ngFor="let weather of responseData?.weather">
+                        <span>{{ weather?.description }}</span>
+                    </div> <br>
+
+                    <span *ngIf="responseData?.wind">Winds : {{ responseData?.wind.speed | number:'1.0-0' }}ms {{
+                        responseData?.wind.deg }}&nbsp; deg</span>
+                    <br><br>
+                    <span *ngIf="responseData?.main">Pressure: {{ responseData?.main?.pressure }}</span> <br>
+                </div>
+            </div>
+
+            <br><br>
+            <hr>
+
+            <div class="weather-row" *ngIf="forecastData">
+                <div *ngFor="let item of forecastData; let i = index" class="weather-column">
+
+                    <div class="date-day">
+                        <span>{{ item?.dt_txt | date:'dd' }}</span> <br>
+                        <span>{{ item?.dt_txt | date:'EEE' }}</span>
+                    </div>
+                    <div class="icon">
+                        <img src="../../assets/images/cloudy-day-3.svg" alt="Weather Icon">
+                    </div>
+                    <div class="temperature">
+                        <span>{{ item?.main?.temp }}°C</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!responseData" style="text-align: center; font-size: large;">
+            <span>No date available</span>
+        </div>
+    </div>
+</div>
+
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>

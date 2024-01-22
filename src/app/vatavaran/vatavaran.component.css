@@ -1,0 +1,58 @@
+.example-form-field {
+  width: 200px;
+}
+
+.weather-container {
+  width: 70%;
+  border: 3px solid #151313cc;
+  background-color: #CADCFC;
+  margin-right: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 13px;
+  font-size: x-large;
+
+}
+
+.content {
+  display: flex;
+}
+
+.icon {
+  margin-right: 20px;
+}
+
+.details {
+  text-align: left;
+}
+
+.weather-row {
+  display: flex;
+}
+
+.weather-column {
+  flex: 1;
+  border: 1px solid #ccc;
+  margin: 5px;
+  padding: 10px;
+  text-align: center;
+}
+
+.date-day {
+  font-weight: bold;
+}
+
+.icon img {
+  width: 50px;
+  height: 50px;
+}
+
+.temperature {
+  font-size: 14px;
+}

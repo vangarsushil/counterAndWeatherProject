@@ -1,0 +1,26 @@
+.projectName {
+  background-color: #CADCFC;
+  height: 55px;
+  margin-bottom: 25px;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Helvetica', sans-serif;
+  color: #333;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.counter-line {
+  margin-bottom: 10px;
+}
+
+.navbar-info {
+  margin-top: 10px;
+}
+
+.counter-line {
+  padding-top: 30px;
+}

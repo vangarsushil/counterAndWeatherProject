@@ -1,0 +1,44 @@
+<mat-card>
+    <div class="projectName">
+        <div [matBadge]="counters.length" matBadgeOverlap="false" class="demo-section">Counter App</div>
+
+    </div>
+
+    <div>
+        <button mat-raised-button color="primary" (click)="addCounter()" style="margin-right: 30px;">
+            <span class="material-icons">add_circle_outline</span>
+            Add Counter
+        </button>
+        <button mat-raised-button color="warn" (click)="resetCounters()" *ngIf="counters.length">
+            <span class="material-icons">restart_alt</span>
+            Reset Counters
+        </button>
+    </div>
+
+    <div *ngFor="let counter of counters; let i = index" class="counter-line">
+        <button mat-fab color="primary" aria-label="Example icon button with a delete icon" style="margin-right: 30px;">
+            {{ counter.count }}
+        </button>
+
+        <button mat-stroked-button color="primary" (click)="incrementCounter(i)" style="margin-right: 10px;">
+            <span class="material-icons">add_circle</span>
+            Increment
+        </button>
+
+        <button mat-stroked-button color="accent" (click)="decrementCounter(i)" style="margin-right: 10px;">
+            <span class="material-icons">remove_circle</span>
+            Decrement
+        </button>
+
+        <button mat-stroked-button color="warn" (click)="deleteCounter(i)">
+            <span class="material-icons">delete_forever</span>
+            Delete
+        </button>
+
+    </div>
+
+    <div class="navbar-info" *ngIf="counters.length">
+        <strong> Number of Counters: {{ counters.length }} </strong>
+    </div>
+
+</mat-card>
