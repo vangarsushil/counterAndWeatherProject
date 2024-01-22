@@ -6,7 +6,7 @@ import { VatavaranComponent } from './vatavaran/vatavaran.component';
 const routes: Routes = [
   { path: 'counter', component: CounterComponent },
   { path: 'vatavaran', component: VatavaranComponent },
-  { path: '', redirectTo: '/vatavaran', pathMatch: 'full' },
+  { path: '', redirectTo: '/counter', pathMatch: 'full' },
 ];
 
 @NgModule({
